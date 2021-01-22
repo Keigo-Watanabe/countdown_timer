@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>サンプルページ</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <h1 id="text"></h1>
+
+    <p id="startDate"></p>
+    <p id="endDate"></p>
+
+    <script>
+      text = document.getElementById('text');
+      startDate = document.getElementById('startDate');
+      endDate = document.getElementById('endDate');
+
+      let sec = 180;
+
+      let dt = new Date();
+      startDate.textContent = '開始日時：' + dt;
+
+      let endDt = new Date(dt.getTime() + sec * 1000);
+      endDate.textContent = '終了日時：' + endDt;
+
+      let cnt = sec;
+      let id = setInterval(() => {
+        cnt--;
+        text.textContent = cnt;
+
+        dt = new Date();
+        if (dt.getTime() >= endDt.getTime()) {
+          clearInterval(id);
+          text.textContent = '終了しました。';
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
